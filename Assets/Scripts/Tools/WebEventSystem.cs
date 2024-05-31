@@ -1,6 +1,6 @@
 using UnityEngine.EventSystems;
 
-namespace SocialNetwork
+namespace Tool
 {
     /// <summary>
     /// Fixes unresponsive UI controls after alt-tabbing on mobile Google Chrome.

@@ -31,7 +31,6 @@ namespace UI.Joystick
             var hasTouch =
                 Input.touches.Any(touch => touch.fingerId == _fingerId);
 
-            Debug.Log(isMouse);
             if (isMouse == false && hasTouch == false)
             {
                 OnFingerOuted();

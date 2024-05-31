@@ -354,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2511000716875418670}
-  - component: {fileID: 7408486845844845806}
+  - component: {fileID: 4589755661838657110}
   - component: {fileID: 2511000716875418671}
   - component: {fileID: 2511000716875418668}
   - component: {fileID: 2511000716875418669}
@@ -387,7 +387,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &7408486845844845806
+--- !u!114 &4589755661838657110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f347b4b2b6521234b8d4e5ec6710c032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isMobileEmul: 0
+  _isMobileEmul: 1
   _mobileUI:
   - {fileID: 2511000717818425827}
   _desktopUI:

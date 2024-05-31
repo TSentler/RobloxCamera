@@ -3,7 +3,7 @@ using SocialNetwork;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputSetter : MonoBehaviour
+public class InputSetter : MonoBehaviour, IMobilable
 {
     [SerializeField] private bool _isMobileEmul;
     [SerializeField] private List<GameObject> _mobileUI;

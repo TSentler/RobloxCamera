@@ -73,7 +73,7 @@ namespace UI.Joystick
             
             if (_maxMagnitude < move.magnitude)
             {
-                Debug.Log(move.magnitude);
+                //Debug.Log(move.magnitude);
                 _maxMagnitude = move.magnitude;
             }
             
