@@ -3,7 +3,7 @@ using MobileInput;
 using PlayerCamera;
 using UI.Joystick;
 using UnityEngine;
-using ICharacterInputSource = Character.ICharacterInputSource;
+using Character;
 
 namespace Player.InputSource
 {
@@ -108,7 +108,7 @@ namespace Player.InputSource
             MovementInput = _movementInput.GetInput();
             ScrollInput = Input.mouseScrollDelta.y;
 
-
+            return;
             Debug.Log("IsJumpInput " + IsJumpInput);
             Debug.Log("IsShiftInput " + IsShiftInput);
             Debug.Log("AttackInputDown " + AttackInputDown);

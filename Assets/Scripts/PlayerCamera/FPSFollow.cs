@@ -13,14 +13,14 @@ namespace PlayerCamera
 
         private void FixedUpdate()
         {
-            Rotate();
+           // Rotate();
         }
 
         private void LateUpdate()
         {
-            Follow(_cameraTargetPoint.position);
-            CornerStabilization();
-            RememberTargetRotation();
+            //Follow(_cameraTargetPoint.position);
+            //CornerStabilization();
+            //RememberTargetRotation();
         }
 
         private void RememberTargetRotation() => 
