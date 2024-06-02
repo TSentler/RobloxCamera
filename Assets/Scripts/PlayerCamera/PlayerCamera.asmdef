@@ -1,7 +1,9 @@
 {
     "name": "PlayerCamera",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:bba35caba19b1f5418e7a6a6890b04ca"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

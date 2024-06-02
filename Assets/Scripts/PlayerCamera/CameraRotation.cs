@@ -1,9 +1,9 @@
 using Character;
 using UnityEngine;
 
-namespace Player
+namespace PlayerCamera
 {
-    public class FPSRotation : MonoBehaviour
+    public class CameraRotation : MonoBehaviour
     {
         private readonly float _pitchLimit = 85f;
 
@@ -37,7 +37,7 @@ namespace Player
             Initialize((ICharacterInputSource)_inputSourceBehaviour);
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             UpdateMouseInput();
             RotateCamera();
@@ -56,7 +56,7 @@ namespace Player
             float speed = _smoothDamp * Time.deltaTime;
             //Vector2 turn = InputSource.MouseInput;
             Vector3 turnX = new Vector3(0f, _turn.x, 0f);
-            Vector3 turnY = new Vector3(_turn.y, 0f, 0f);
+            Vector3 turnY = new Vector3(-_turn.y, 0f, 0f);
             Quaternion targetX = Quaternion.Euler(turnX);
             Quaternion targetY = Quaternion.Euler(turnY);
 

@@ -33,10 +33,10 @@ namespace Player
             }    
         }
         
-        protected virtual void Awake()
+        protected void Awake()
         {
-            Rigidbody = GetComponent<Rigidbody>();
             Initialize((ICharacterInputSource)_inputSourceBehaviour);
+            Rigidbody = GetComponent<Rigidbody>();
         }
 
         public virtual void SetDirection(Vector2 direction)
