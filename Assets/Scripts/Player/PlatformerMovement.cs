@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class FPSMovement : Movement
+    public class PlatformerMovement : Movement
     {
         [SerializeField] private Transform _cameraRoot;
         [SerializeField] private float _speed = 500f, _torque = 10f;

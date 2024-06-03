@@ -8,6 +8,7 @@ namespace Character
         bool AttackInput { get; }
         Vector2 MovementInput { get; }
         Vector2 MouseInput { get; }
+        bool IsJumpInputDown { get; }
         bool IsJumpInput { get; }
         bool IsShiftInput { get; }
     }

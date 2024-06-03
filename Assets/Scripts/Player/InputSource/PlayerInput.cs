@@ -23,6 +23,7 @@ namespace Player.InputSource
         public bool AttackInput { get; private set; }
         public Vector2 MovementInput { get; private set; }
         public Vector2 MouseInput { get; private set; }
+        public bool IsJumpInputDown { get; private set; }
         public bool IsJumpInput { get; private set; }
         public bool IsShiftInput { get; private set; }
         public float ScrollInput { get; private set; }
@@ -38,8 +39,8 @@ namespace Player.InputSource
             OverlapPointer attackOverlapPointer = FindObjectOfType<ShootOverlapPointer>();
             _inputSetter = FindObjectOfType<InputSetter>();
             _attackInput = new AttackInputSource(touchPointer, attackOverlapPointer, _inputSetter);
-            var jumpPointer = FindObjectOfType<JumpClickPointer>();
-            _jumpInput = new JumpInputSource(jumpPointer);
+            var jumpPointer = FindObjectOfType<JumpButtonPointer>();
+            _jumpInput = new JumpInputSource(jumpPointer, _inputSetter);
             
             _mouseStateHandler = FindObjectOfType<MouseStateHandler>();
             _pauseHandler = FindObjectOfType<PauseHandler>();
@@ -91,7 +92,8 @@ namespace Player.InputSource
 
         private void DefaultInput()
         {
-            AttackInputDown = AttackInput = IsJumpInput = IsShiftInput = false;
+            AttackInputDown = AttackInput = IsJumpInputDown = 
+                IsShiftInput = IsJumpInput = false;
             MovementInput = MouseInput = Vector2.zero;
             ScrollInput = 0f;
         }
@@ -100,7 +102,8 @@ namespace Player.InputSource
         {
             AttackInputDown = _attackInput.GetInputDown();
             AttackInput = _attackInput.GetInput();
-            IsJumpInput = _jumpInput.GetInputDown();
+            IsJumpInputDown = _jumpInput.GetInputDown();
+            IsJumpInput = _jumpInput.GetInput();
             IsShiftInput = _inputSetter.IsMobile 
                            || Input.GetKey(KeyCode.LeftShift) || _isRunLock;
             
@@ -109,7 +112,7 @@ namespace Player.InputSource
             ScrollInput = Input.mouseScrollDelta.y;
 
             return;
-            Debug.Log("IsJumpInput " + IsJumpInput);
+            Debug.Log("IsJumpInput " + IsJumpInputDown);
             Debug.Log("IsShiftInput " + IsShiftInput);
             Debug.Log("AttackInputDown " + AttackInputDown);
             Debug.Log("AttackInput " + AttackInput);

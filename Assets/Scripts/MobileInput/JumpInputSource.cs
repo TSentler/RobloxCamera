@@ -1,3 +1,4 @@
+using Mobile;
 using UI.Joystick;
 using UnityEngine;
 
@@ -5,28 +6,33 @@ namespace MobileInput
 {
     public class JumpInputSource
     {
-        private readonly ClickPointer _clickPointer;
+        private readonly ButtonPointer _buttonPointer;
         
         private bool _isJump;
-        
-        public JumpInputSource(ClickPointer clickPointer)
+        private IMobilable _mobileChecker;
+
+
+        public JumpInputSource(ButtonPointer buttonPointer,
+            IMobilable mobileChecker)
         {
-            _clickPointer = clickPointer;
+            _buttonPointer = buttonPointer;
+            _mobileChecker = mobileChecker;
         }
         
         public void Subscribe()
         {
-            _clickPointer.Downed += OnDowned;
+            _buttonPointer.Downed += OnDowned;
         }
 
         public void Unsubscribe()
         {
-            _clickPointer.Downed -= OnDowned;
+            _buttonPointer.Downed -= OnDowned;
         }
 
         private void OnDowned()
         {
             _isJump = true;
+
         }
 
         public bool GetInputDown()
@@ -34,6 +40,16 @@ namespace MobileInput
             var input = Input.GetButtonDown("Jump") || _isJump;
             _isJump = false;
             return input;
+        }
+
+        public bool GetInput()
+        {
+            if (_mobileChecker.IsMobile == false && _buttonPointer.IsTouch == false)
+            {
+                return Input.GetButton("Jump");
+            }
+
+            return _buttonPointer.IsTouch;
         }
     }
 }
