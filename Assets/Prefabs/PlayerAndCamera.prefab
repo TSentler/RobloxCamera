@@ -282,7 +282,7 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 65
-  _groundOverlapRadius: 0.15
+  _groundOverlapRadius: 0.7
 --- !u!1 &3783047337999257927
 GameObject:
   m_ObjectHideFlags: 0

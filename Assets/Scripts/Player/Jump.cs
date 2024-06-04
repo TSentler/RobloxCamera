@@ -15,6 +15,7 @@ namespace Player
         private Rigidbody _rigidbody;
         private GroundChecker _groundChecker;
         private JumpInterval _jumpInterval;
+        private bool _isJump, _isJumpDown;
 
         private void OnValidate()
         {
@@ -52,14 +53,9 @@ namespace Player
             _jumpInterval.Unsubscribe(_groundChecker);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             float y = _rigidbody.velocity.y;
-            if (InputSource.IsJumpInputDown && (_groundChecker.IsGround || _jumpInterval.IsJumpInterval))
-            {
-                _jumpInterval.Jump();
-                _rigidbody.velocity = Vector3.up * _jumpSpeed;
-            }
 
             if (y < 0f)
             {
@@ -69,6 +65,18 @@ namespace Player
             {
                 _rigidbody.velocity += Vector3.up * Physics.gravity.y * _jumpRate * Time.deltaTime;
             }
+        }
+
+        private void Update()
+        {
+            if (InputSource.IsJumpInputDown && (_groundChecker.IsGround || _jumpInterval.IsJumpInterval))
+            {
+                _jumpInterval.Jump();
+                _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _jumpSpeed, _rigidbody.velocity.z);
+            }
+
+            _isJumpDown = InputSource.IsJumpInputDown;
+            _isJump = InputSource.IsJumpInput;
         }
     }
 }

@@ -30,7 +30,6 @@ namespace Player
 
         public void DisableMouse()
         {
-            Debug.Log("Mouse Disable");
             if (_inputSetter.IsMobile)
                 return;
 
@@ -41,7 +40,6 @@ namespace Player
 
         public void EnableMouse()
         {
-            Debug.Log("Mouse Enable");
             if (_inputSetter.IsMobile)
                 return;
 
