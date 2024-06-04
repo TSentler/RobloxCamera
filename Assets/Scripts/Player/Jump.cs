@@ -13,6 +13,8 @@ namespace Player
 
         private ICharacterInputSource InputSource;
         private Rigidbody _rigidbody;
+        private GroundChecker _groundChecker;
+        private JumpInterval _jumpInterval;
 
         private void OnValidate()
         {
@@ -36,13 +38,26 @@ namespace Player
         {
             Initialize((ICharacterInputSource)_inputSourceBehaviour);
             _rigidbody = GetComponent<Rigidbody>();
+            _groundChecker = GetComponent<GroundChecker>();
+            _jumpInterval = new JumpInterval();
+        }
+
+        private void OnEnable()
+        {
+            _jumpInterval.Subscribe(_groundChecker);
+        }
+
+        private void OnDisable()
+        {
+            _jumpInterval.Unsubscribe(_groundChecker);
         }
 
         private void Update()
         {
             float y = _rigidbody.velocity.y;
-            if (InputSource.IsJumpInputDown)
+            if (InputSource.IsJumpInputDown && (_groundChecker.IsGround || _jumpInterval.IsJumpInterval))
             {
+                _jumpInterval.Jump();
                 _rigidbody.velocity = Vector3.up * _jumpSpeed;
             }
 

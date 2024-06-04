@@ -9,8 +9,28 @@ namespace PointerLock.Hook
 {
     public class PointerLockHook : MonoBehaviour
     {
+        private const string CorrectName = "JavascriptHook";
+
+        [Header("GameObject name must be " + CorrectName)]
+        public bool IsNameCorrect;
+
         public event UnityAction PointerLocked, PointerUnlocked;
-        
+
+        private void OnValidate()
+        {
+            if (gameObject.name == CorrectName && IsNameCorrect)
+                return;
+
+            if (gameObject.name != CorrectName && IsNameCorrect)
+            {
+                gameObject.name = CorrectName;
+            }
+            if (gameObject.name == CorrectName && IsNameCorrect == false)
+            {
+                IsNameCorrect = true;
+            }
+        }
+
         private void Awake()
         {
 #if WEBGL_DEFINE

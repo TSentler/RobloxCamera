@@ -895,8 +895,8 @@ Transform:
   m_GameObject: {fileID: 255072573}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.84, y: -2.01, z: -1.97}
-  m_LocalScale: {x: 1000, y: 1, z: 1000}
+  m_LocalPosition: {x: 0.84, y: -12.01, z: -1.97}
+  m_LocalScale: {x: 1000, y: 20, z: 1000}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1357,7 +1357,7 @@ GameObject:
   - component: {fileID: 480089522}
   - component: {fileID: 480089523}
   m_Layer: 0
-  m_Name: MouseMobileState
+  m_Name: JavascriptHook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1390,6 +1390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d4c5b96298eb9d468fffdcdd29e5dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsNameCorrect: 1
 --- !u!114 &480089523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2836,11 +2837,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486639412}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1524542513 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2858705310879597669, guid: 78cfb4930a471294da4eb2fc949a9bbd, type: 3}
-  m_PrefabInstance: {fileID: 4872035446907605900}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1528620431
 GameObject:
   m_ObjectHideFlags: 0
@@ -3435,10 +3431,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2456955957755875062, guid: 78cfb4930a471294da4eb2fc949a9bbd, type: 3}
-      propertyPath: _cameraRoot
-      value: 
-      objectReference: {fileID: 1524542513}
     - target: {fileID: 4536635129678864788, guid: 78cfb4930a471294da4eb2fc949a9bbd, type: 3}
       propertyPath: m_Name
       value: PlayerAndCamera
