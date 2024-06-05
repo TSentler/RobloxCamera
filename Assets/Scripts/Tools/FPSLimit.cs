@@ -10,7 +10,7 @@ namespace Tools
         private void Awake()
         {
 #if !UNITY_EDITOR && UNITY_WEBGL
-            _targetFrameRate = 0f;
+            _targetFrameRate = 0;
 #endif
         }
 

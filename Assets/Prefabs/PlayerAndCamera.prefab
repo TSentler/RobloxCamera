@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraTarget: {fileID: 1792210198622130103}
+  _camera: {fileID: 8566549392671950248}
   _smoothTime: 6
+  _minDistance: 3
 --- !u!114 &9146350088664589318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +168,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2806867844638402469}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 6fac4c5e1407cd2408c9db5463486eeb, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -309,7 +311,7 @@ Transform:
   m_GameObject: {fileID: 3783047337999257927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -0.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -327,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1ae95bfbdb66a45b3539c379fa35f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 0.15
+  _radius: 0.7
 --- !u!1 &4536635129678864788
 GameObject:
   m_ObjectHideFlags: 0
