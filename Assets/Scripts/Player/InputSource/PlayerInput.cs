@@ -16,6 +16,7 @@ namespace Player.InputSource
         private AttackInputSource _attackInput;
         private JumpInputSource _jumpInput;
         private InputSetter _inputSetter;
+        private ZoomInputSource _zoomInput;
         private bool _isRunLock;
         private PauseHandler _pauseHandler;
 
@@ -41,7 +42,9 @@ namespace Player.InputSource
             _attackInput = new AttackInputSource(touchPointer, attackOverlapPointer, _inputSetter);
             var jumpPointer = FindObjectOfType<JumpButtonPointer>();
             _jumpInput = new JumpInputSource(jumpPointer, _inputSetter);
-            
+            var zoomTouch = FindObjectOfType<ZoomTouch>();
+            _zoomInput = new ZoomInputSource(zoomTouch);
+
             _mouseStateHandler = FindObjectOfType<MouseStateHandler>();
             _pauseHandler = FindObjectOfType<PauseHandler>();
             if (_pauseHandler.IsPause)
@@ -64,6 +67,7 @@ namespace Player.InputSource
             _rotationInput.Subscribe();
             _attackInput.Subscribe();
             _jumpInput.Subscribe();
+            _zoomInput.Subscribe();
         }
 
         private void OnDisable()
@@ -73,6 +77,7 @@ namespace Player.InputSource
             _rotationInput.Unsubscribe();
             _attackInput.Unsubscribe();
             _jumpInput.Unsubscribe();
+            _zoomInput.Unsubscribe();
         }
 
         private void Update()
@@ -109,7 +114,7 @@ namespace Player.InputSource
             
             MouseInput = _rotationInput.GetInput();
             MovementInput = _movementInput.GetInput();
-            ScrollInput = Input.mouseScrollDelta.y;
+            ScrollInput = _zoomInput.GetInput();
 
             return;
             Debug.Log("IsJumpInput " + IsJumpInputDown);
