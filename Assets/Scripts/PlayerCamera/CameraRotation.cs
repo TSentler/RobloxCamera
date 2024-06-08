@@ -1,8 +1,11 @@
 using Character;
+using PlayerCamera.ValueStat;
 using UnityEngine;
+using ValueStat;
 
 namespace PlayerCamera
 {
+    [RequireComponent(typeof(SensetivityStat))]
     public class CameraRotation : MonoBehaviour
     {
         private readonly float _pitchLimit = 85f;
@@ -13,6 +16,7 @@ namespace PlayerCamera
         [Min(0.001f), SerializeField] private float _smoothDamp = 10f;
 
         private ICharacterInputSource InputSource;
+        private IFloatStat _sensetivity;
 
         private void OnValidate()
         {
@@ -35,6 +39,7 @@ namespace PlayerCamera
         protected virtual void Awake()
         {
             Initialize((ICharacterInputSource)_inputSourceBehaviour);
+            _sensetivity = GetComponent<SensetivityStat>();
         }
 
         private void LateUpdate()
@@ -45,7 +50,7 @@ namespace PlayerCamera
 
         private void UpdateMouseInput()
         {
-            _turn += InputSource.MouseInput;
+            _turn += InputSource.MouseInput * _sensetivity.Value;
             _turn.x %= 360f;
             _turn.y %= 360f;
             _turn.y = ClampAngle(_turn.y);

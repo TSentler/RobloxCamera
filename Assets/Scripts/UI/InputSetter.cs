@@ -19,7 +19,6 @@ public class InputSetter : MonoBehaviour, IMobilable
         if (MobileChecker.IsMobile()
             || _isMobileEmul && Defines.IsUnityEditor)
         {
-
             _isMobile = true;
         }
     }

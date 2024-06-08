@@ -18,6 +18,8 @@ namespace PlayerCamera
         public event UnityAction Moved;
                 
         public Transform CameraRoot => _cameraRoot;
+        public float CurrentLocalCameraDistance => MaxLocalPosition.magnitude;
+        public float MaxLocalCameraDistance => _defaultMaxLocalPosition.magnitude;
 
         private Vector3 MaxLocalPosition => _defaultMaxLocalPosition * _maxDistanceFactor;
         
@@ -32,6 +34,11 @@ namespace PlayerCamera
             var targetLocalPosition = GetCameraLocalPosition();
 
             Move(targetLocalPosition);
+        }
+
+        private Vector3 GetMaxCameraPosition()
+        {
+            return _cameraRoot.TransformPoint(MaxLocalPosition);
         }
 
         private void Move(Vector3 targetLocalPosition)
@@ -72,8 +79,7 @@ namespace PlayerCamera
         private Vector3 GetCameraLocalPosition()
         {
             Vector3 cameraLocalPosition;
-            Vector3 maxCameraPosition =
-                _cameraRoot.TransformPoint(MaxLocalPosition);
+            Vector3 maxCameraPosition = GetMaxCameraPosition();
             Collider[] hits = Physics.OverlapCapsule(_cameraRoot.position,
                 maxCameraPosition, _radius, ~_playerLayer,
                 QueryTriggerInteraction.Ignore);

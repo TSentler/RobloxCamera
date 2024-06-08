@@ -28,6 +28,14 @@ namespace Player
             _pointerLockHook.PointerUnlocked -= EnableMouse;
         }
 
+        private void Update()
+        {
+            if (Input.GetButtonDown("Cancel"))
+            {
+                EnableMouse();
+            }
+        }
+
         public void DisableMouse()
         {
             if (_inputSetter.IsMobile)

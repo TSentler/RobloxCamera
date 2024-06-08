@@ -61,7 +61,7 @@ namespace Player
             {
                 _rigidbody.velocity += Vector3.up * Physics.gravity.y * _fallRate * Time.deltaTime;
             }
-            else if (y > 0f && InputSource.IsJumpInput == false)
+            else if (y > 0.5f && InputSource.IsJumpInput == false)
             {
                 _rigidbody.velocity += Vector3.up * Physics.gravity.y * _jumpRate * Time.deltaTime;
             }

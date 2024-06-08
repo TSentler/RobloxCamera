@@ -5,6 +5,7 @@ namespace UI.Joystick
 {
     public class FloatingStick : MonoBehaviour
     {
+        [SerializeField] private float Alpha = 0.5f;
         [SerializeField] private StickPointer _stickPointer;
         [SerializeField] private RectTransform _stickArea, _stickKnob;
         [SerializeField] private Image _areaImage, _knobImage;
@@ -48,7 +49,7 @@ namespace UI.Joystick
 
         private void OnFingerOuted()
         {
-            Fade(0.5f);
+            Fade(Alpha);
             _stickKnob.anchoredPosition = Vector2.zero;
             _stickArea.anchoredPosition = Vector2.zero;
         }
