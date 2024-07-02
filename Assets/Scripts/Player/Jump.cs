@@ -72,7 +72,8 @@ namespace Player
             if (InputSource.IsJumpInputDown && (_groundChecker.IsGround || _jumpInterval.IsJumpInterval))
             {
                 _jumpInterval.Jump();
-                _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _jumpSpeed, _rigidbody.velocity.z);
+                _rigidbody.AddForce(Vector3.up * _jumpSpeed, ForceMode.Impulse);
+                //_rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _jumpSpeed, _rigidbody.velocity.z);
             }
 
             _isJumpDown = InputSource.IsJumpInputDown;

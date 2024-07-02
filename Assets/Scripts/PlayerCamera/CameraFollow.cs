@@ -1,5 +1,3 @@
-using Codice.Client.BaseCommands.CheckIn.Progress;
-using System;
 using UnityEngine;
 
 namespace PlayerCamera

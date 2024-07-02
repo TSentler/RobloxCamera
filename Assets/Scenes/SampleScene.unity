@@ -658,7 +658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589755661838657110, guid: c3ae4d2db6fb49d4a97290c7bdf7a05e, type: 3}
       propertyPath: _isMobileEmul
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6469417497932760492, guid: c3ae4d2db6fb49d4a97290c7bdf7a05e, type: 3}
       propertyPath: m_IsActive
