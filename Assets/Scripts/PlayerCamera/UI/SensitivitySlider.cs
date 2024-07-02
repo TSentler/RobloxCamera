@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace PlayerCamera.UI
 {
     [RequireComponent(typeof(Slider))]
-    public class SensetivitySlider : MonoBehaviour
+    public class SensitivitySlider : MonoBehaviour
     {
         private Slider _slider;
         private IFloatStatWriter _sensetivity;
