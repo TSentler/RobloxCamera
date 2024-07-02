@@ -1,3 +1,6 @@
+#if !UNITY_EDITOR && UNITY_WEBGL
+#define WEBGL_DEFINE
+#endif
 using UnityEngine;
 
 namespace Plugins.WebFullScreen
