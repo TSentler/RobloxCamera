@@ -7,6 +7,8 @@ namespace Dialogs
     {
         public TMP_Text NameText;
         public TMP_Text MessageText;
+        public DialogButtons DialogButtons;
+        public BackgroundSwitcher BackgroundSwitcher;
 
         private void Awake()
         {
@@ -16,8 +18,20 @@ namespace Dialogs
 
         public void SetPhrase(Phrase phrase)
         {
+            DialogButtons.InitializePhrase();
             NameText.text = phrase.Name;
             MessageText.text = phrase.Message;
+            BackgroundSwitcher.Activate(phrase.BackgroundIndex);
+
+            if (phrase is PhraseFork)
+            {
+                SetPhrase(phrase as PhraseFork);
+            }
+        }
+
+        private void SetPhrase(PhraseFork phraseFork)
+        {
+            DialogButtons.InitializePhraseFork(phraseFork);
         }
     }
 }

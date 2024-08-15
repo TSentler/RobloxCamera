@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Dialogs
 {
@@ -9,7 +8,12 @@ namespace Dialogs
         public string Name;
         public string Message;
         public Camera Camera;
+        public int BackgroundIndex = -1;
         public Phrase NextPhrase;
 
+        public virtual Phrase GetNextPhrase()
+        {
+            return NextPhrase;
+        }
     }
 }

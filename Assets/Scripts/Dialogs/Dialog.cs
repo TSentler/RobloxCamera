@@ -10,20 +10,21 @@ namespace Dialogs
         public UnityEvent OnStarted;
         public UnityEvent OnEnded;
 
-        private Phrase _phrase; //ссылка на компонент текущей фразы
+        private Phrase _currentPhrase; //ссылка на компонент текущей фразы
+        private Phrase _firstPhrase;
         private DialogActivator _dialogActivator;
         private DialogView _dialogView;
-        private DialogButton _dialogButton;
+        private DialogButtons _dialogButton;
         private Camera _currentCamera;
         private bool _isCurrent;
         private bool _isClicked;
 
         private void Awake()
         {
-            _phrase = GetComponent<Phrase>(); //с помощью метода GetComponent находим первый рядом лежащий компонент 
+            _firstPhrase = GetComponent<Phrase>(); //с помощью метода GetComponent находим первый рядом лежащий компонент 
             _dialogView = FindObjectOfType<DialogView>(); //ищем компонент DialogView который гдето на сцене(на одном из гейм объектв).
             _dialogActivator = FindObjectOfType<DialogActivator>(); //изначально любая ссылка например _dialogActivator пустая как если бы ей был присвоен null _dialogActivator = null
-            _dialogButton = FindObjectOfType<DialogButton>();
+            _dialogButton = FindObjectOfType<DialogButtons>();
         }
 
         private void OnEnable()
@@ -49,6 +50,7 @@ namespace Dialogs
             Debug.Log(gameObject.name);
             _isCurrent = true;
             _dialogActivator.Activate();
+            _currentPhrase = _firstPhrase;
             Say();
             OnStarted.Invoke();
         }
@@ -58,16 +60,16 @@ namespace Dialogs
             if (_isCurrent == false)
                 return;
 
+            _currentPhrase = _currentPhrase.GetNextPhrase();
             Say();
         }
 
         private void Say()
         {
-            if (_phrase != null)
+            if (_currentPhrase != null)
             {
-                _dialogView.SetPhrase(_phrase);
+                _dialogView.SetPhrase(_currentPhrase);
                 CameraActivate();
-                _phrase = _phrase.NextPhrase;
             }
             else
             {
@@ -75,17 +77,16 @@ namespace Dialogs
                 _dialogActivator.Deactivate();
                 CameraDeactivate();
                 OnEnded.Invoke();
-                _phrase = GetComponent<Phrase>();
             }
         }
 
         private void CameraActivate()
         {
-            if (_phrase.Camera == null)
+            if (_currentPhrase.Camera == null)
                 return;
 
             CameraDeactivate();
-            _currentCamera = _phrase.Camera;
+            _currentCamera = _currentPhrase.Camera;
             _currentCamera.gameObject.SetActive(true);
         }
 
@@ -99,16 +100,7 @@ namespace Dialogs
 
         private void OnDialogClick()
         {
-            _isClicked = true;
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space) || _isClicked)
-            {
-                NextPhrase();
-            }
-            _isClicked = false;
+            NextPhrase();
         }
     }
 }
