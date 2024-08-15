@@ -1,10 +1,15 @@
 ﻿using PointerLock.Hook;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player
 {
+    public interface IMouseActivator { }
+
     public class MouseStateHandler : MonoBehaviour
     {
+        private readonly List<IMouseActivator> _mouseActivators = new List<IMouseActivator>();
+
         private PointerLockHook _pointerLockHook;
         private InputSetter _inputSetter;
 
@@ -28,29 +33,41 @@ namespace Player
             _pointerLockHook.PointerUnlocked -= EnableMouse;
         }
 
-        private void Update()
-        {
-            if (Input.GetButtonDown("Cancel"))
-            {
-                EnableMouse();
-            }
-        }
-
-        public void DisableMouse()
+        public void DisableMouse(IMouseActivator mouseActivator)
         {
             if (_inputSetter.IsMobile)
                 return;
 
+            _mouseActivators.Remove(mouseActivator);
+
+            if (_mouseActivators.Count > 0)
+                return;
+
+            DisableMouse();
+        }
+
+        public void EnableMouse(IMouseActivator mouseActivator)
+        {
+            if (_inputSetter.IsMobile)
+                return;
+
+            if (_mouseActivators.Contains(mouseActivator) == false)
+            {
+                _mouseActivators.Add(mouseActivator);
+            }
+
+            EnableMouse();
+        }
+
+        private void DisableMouse()
+        {
             IsMouseEnable = false;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
 
-        public void EnableMouse()
+        private void EnableMouse()
         {
-            if (_inputSetter.IsMobile)
-                return;
-
             IsMouseEnable = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

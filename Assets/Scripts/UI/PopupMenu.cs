@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace UI
 {
-    public class PopupMenu : MonoBehaviour
+    public class PopupMenu : MonoBehaviour, IMouseActivator
     {
+        [SerializeField] private bool _isOpenByStart;
         [SerializeField] private GameObject _root;
 
         private MouseStateHandler _mouseStateHandler;
@@ -18,12 +19,19 @@ namespace UI
 
         private void Start()
         {
-            Open();
+            if (_isOpenByStart)
+            {
+                Open();
+            }
+            else
+            {
+                _root.SetActive(false);
+            }
         }
 
         private void Update()
         {
-            if (Input.GetButtonDown("Cancel"))
+            if (Input.GetButtonDown("Menu"))
             {
                 Open();
             }
@@ -37,12 +45,12 @@ namespace UI
         public void Open()
         {
             _root.SetActive(true);
-            _mouseStateHandler.EnableMouse();
+            _mouseStateHandler.EnableMouse(this);
         }
 
         public void Close()
         {
-            _mouseStateHandler.DisableMouse();
+            _mouseStateHandler.DisableMouse(this);
             _root.SetActive(false);
         }
     }

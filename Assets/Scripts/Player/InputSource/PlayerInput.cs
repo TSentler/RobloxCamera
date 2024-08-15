@@ -7,7 +7,7 @@ using Character;
 
 namespace Player.InputSource
 {
-    public class PlayerInput : MonoBehaviour, ICharacterInputSource, IPausable, IScrollInputSource
+    public class PlayerInput : MonoBehaviour, ICharacterInputSource, IPausable, IScrollInputSource, IMouseActivator
     {
         private CursorLockerPanel _lockerPanel;
         private MovementInputSource _movementInput;
@@ -128,7 +128,7 @@ namespace Player.InputSource
         {
             _movementInput?.Reset();
             _rotationInput?.Reset();
-            _mouseStateHandler?.EnableMouse();
+            _mouseStateHandler?.EnableMouse(this);
         }
 
         public void Unpause()
@@ -145,7 +145,7 @@ namespace Player.InputSource
             if (_pauseHandler.IsPause)
                 return;
             
-            _mouseStateHandler?.DisableMouse();
+            _mouseStateHandler?.DisableMouse(this);
         }
     }
 }
