@@ -10,7 +10,7 @@ namespace Dialogs
         public UnityEvent OnStarted;
         public UnityEvent OnEnded;
 
-        private Phrase _currentPhrase; //ссылка на компонент текущей фразы
+        private Phrase _currentPhrase; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         private Phrase _firstPhrase;
         private DialogActivator _dialogActivator;
         private DialogView _dialogView;
@@ -21,9 +21,9 @@ namespace Dialogs
 
         private void Awake()
         {
-            _firstPhrase = GetComponent<Phrase>(); //с помощью метода GetComponent находим первый рядом лежащий компонент 
-            _dialogView = FindObjectOfType<DialogView>(); //ищем компонент DialogView который гдето на сцене(на одном из гейм объектв).
-            _dialogActivator = FindObjectOfType<DialogActivator>(); //изначально любая ссылка например _dialogActivator пустая как если бы ей был присвоен null _dialogActivator = null
+            _firstPhrase = GetComponent<Phrase>(); //пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ GetComponent пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+            _dialogView = FindObjectOfType<DialogView>(); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DialogView пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ(пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ).
+            _dialogActivator = FindObjectOfType<DialogActivator>(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ _dialogActivator пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ null _dialogActivator = null
             _dialogButton = FindObjectOfType<DialogButtons>();
         }
 
@@ -47,7 +47,6 @@ namespace Dialogs
 
         public void StartDialog()
         {
-            Debug.Log(gameObject.name);
             _isCurrent = true;
             _dialogActivator.Activate();
             _currentPhrase = _firstPhrase;

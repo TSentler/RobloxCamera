@@ -78,12 +78,10 @@ namespace Player.InputSource
                 || _mouseStateHandler.IsMouseEnable)
             {
                 DefaultInput();
-                Debug.Log("pause");
             }
             else
             {
                 ReadInput();
-                Debug.Log("unpause");
             }
 
             _rotationInput.Reset();

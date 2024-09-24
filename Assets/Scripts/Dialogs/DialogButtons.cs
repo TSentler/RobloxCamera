@@ -18,7 +18,7 @@ namespace Dialogs
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && _isClicked == false)
+            if (Input.GetButtonDown("Jump") && _isClicked == false)
             {
                 Click();
             }
