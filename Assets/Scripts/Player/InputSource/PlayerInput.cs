@@ -7,9 +7,8 @@ using Character;
 
 namespace Player.InputSource
 {
-    public class PlayerInput : MonoBehaviour, ICharacterInputSource, IPausable, IScrollInputSource, IMouseActivator
+    public class PlayerInput : MonoBehaviour, ICharacterInputSource, IPausable, IScrollInputSource 
     {
-        private CursorLockerPanel _lockerPanel;
         private MovementInputSource _movementInput;
         private RotationInputSource _rotationInput;
         private MouseStateHandler _mouseStateHandler;
@@ -32,7 +31,6 @@ namespace Player.InputSource
         private void Awake()
         {
             // WebGLInput.captureAllKeyboardInput = true; 
-            _lockerPanel = FindObjectOfType<CursorLockerPanel>();
             var stick = FindObjectOfType<StickPointer>();
             _movementInput = new MovementInputSource(stick);
             var touchPointer = FindObjectOfType<TouchPointer>();
@@ -47,10 +45,6 @@ namespace Player.InputSource
 
             _mouseStateHandler = FindObjectOfType<MouseStateHandler>();
             _pauseHandler = FindObjectOfType<PauseHandler>();
-            if (_pauseHandler.IsPause)
-            {
-                Pause();
-            }
             _pauseHandler.Subscribe(this);
             //_agent.updateRotation = false;
         }
@@ -62,7 +56,6 @@ namespace Player.InputSource
 
         private void OnEnable()
         {
-            _lockerPanel.PointerDowned += OnPointerDowned;
             _movementInput.Subscribe();
             _rotationInput.Subscribe();
             _attackInput.Subscribe();
@@ -72,7 +65,6 @@ namespace Player.InputSource
 
         private void OnDisable()
         {
-            _lockerPanel.PointerDowned -= OnPointerDowned;
             _movementInput.Unsubscribe();
             _rotationInput.Unsubscribe();
             _attackInput.Unsubscribe();
@@ -86,10 +78,12 @@ namespace Player.InputSource
                 || _mouseStateHandler.IsMouseEnable)
             {
                 DefaultInput();
+                Debug.Log("pause");
             }
             else
             {
                 ReadInput();
+                Debug.Log("unpause");
             }
 
             _rotationInput.Reset();
@@ -128,7 +122,6 @@ namespace Player.InputSource
         {
             _movementInput?.Reset();
             _rotationInput?.Reset();
-            _mouseStateHandler?.EnableMouse(this);
         }
 
         public void Unpause()
@@ -138,14 +131,6 @@ namespace Player.InputSource
         public void Run()
         {
             _isRunLock = !_isRunLock;
-        }
-        
-        private void OnPointerDowned()
-        {
-            if (_pauseHandler.IsPause)
-                return;
-            
-            _mouseStateHandler?.DisableMouse(this);
         }
     }
 }

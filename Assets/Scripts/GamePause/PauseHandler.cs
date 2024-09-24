@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using System.Linq;
+using Interfaces;
 using UnityEngine;
 
 namespace GamePause
 {
-    public class PauseHandler : MonoBehaviour
+    public class PauseHandler : MonoBehaviour, IActivatable
     {
         private List<IPausable> _pausables = new ();
 
@@ -22,7 +22,7 @@ namespace GamePause
         {
             _pausables.Remove(subscriber);
         }
-        
+
         public void Pause()
         {
             IsPause = true;
@@ -41,6 +41,16 @@ namespace GamePause
             {
                 pausable.Unpause();
             }
+        }
+
+        public void Activate()
+        {
+            Pause();
+        }
+
+        public void Deactivate()
+        {
+            Unpause();
         }
     }
 }

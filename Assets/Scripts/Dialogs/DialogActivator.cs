@@ -1,5 +1,6 @@
 using Player;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Dialogs
 {
@@ -8,6 +9,8 @@ namespace Dialogs
         public GameObject Root;
 
         private MouseStateHandler _mouseStateHandler;
+
+        public event UnityAction Activated, Deactivated;
 
         private void Awake()
         {
@@ -19,12 +22,14 @@ namespace Dialogs
         {
             Root.SetActive(true); //Активация геймобъекта с канвасом диалогов
             _mouseStateHandler.EnableMouse(this);
+            Activated?.Invoke();
         }
 
         public void Deactivate()
         {
             Root.SetActive(false);
             _mouseStateHandler.DisableMouse(this);
+            Deactivated?.Invoke();
         }
     }
 }
