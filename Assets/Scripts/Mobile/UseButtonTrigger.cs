@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Interactions
+namespace Mobile
 {
     [RequireComponent(typeof(Collider))]
     public class UseButtonTrigger : MonoBehaviour

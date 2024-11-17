@@ -1,0 +1,18 @@
+{
+    "name": "Mobile",
+    "rootNamespace": "",
+    "references": [
+        "GUID:68b4b4a5044046d45bd9934729dfe66f",
+        "GUID:a38f98caa3c76cc4389de5781609396a",
+        "GUID:0d7169600e95aa749a9909c5e8f8c865"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
